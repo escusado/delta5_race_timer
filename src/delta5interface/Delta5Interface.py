@@ -23,7 +23,7 @@ WRITE_CALIBRATION_OFFSET = 0x67
 WRITE_TRIGGER_THRESHOLD = 0x68
 WRITE_FILTER_RATIO = 0x69
 
-UPDATE_SLEEP = 0.1 # Main update loop delay
+UPDATE_SLEEP = 0.05 # Main update loop delay
 
 I2C_CHILL_TIME = 0.075 # Delay after i2c read/write
 I2C_RETRY_COUNT = 5 # Limit of i2c retries
@@ -75,7 +75,7 @@ class Delta5Interface(BaseHardwareInterface):
 
         # Scans all i2c_addrs to populate nodes array
         self.nodes = [] # Array to hold each node object
-        i2c_addrs = [8, 10, 12, 14, 16, 18, 20, 22] # Software limited to 8 nodes
+        i2c_addrs = [8, 10, 12, 14] # Software limited to 8 nodes
         for index, addr in enumerate(i2c_addrs):
             try:
                 self.i2c.read_i2c_block_data(addr, READ_ADDRESS, 1)
